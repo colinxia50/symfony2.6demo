@@ -3,7 +3,7 @@ $( window ).on( "load", function(){
     var pid = 3; //此值为数据库查询的偏移量 代替分页
     //$.cookie('the_cookie', 'ok'); 
     window.onscroll=function(){
-    	console.log(checkscrollside());
+    	//console.log(checkscrollside());
         if(checkscrollside()){
         	//setTimeout(console.log('延时'),1000);这个函数只会延迟console.log的执行
         	//并不能延迟下面的程序执行 真心玩不了 就这样了 好多bug 真的
@@ -103,30 +103,8 @@ function checkscrollside(){
     }
 }
 
-/*
-获取胡言
-
-*/
-function ajaxgettxt(pid){
-    $.ajax({  
-           type: "POST",  
-           dataType: 'json',  
-           url: "ajaxget", 
-           data: {  
-           id: pid,
-           },   
-           success: function(data){
-        	   window.datas = eval(data)
-        	   console.log(datas);
 
 
-	    	   //  $("#myModalLabel").text(data.doc.position);
-	    	   //  $("#msg").append("<small>这是真的。你bb成功了！</small>");
-	    	  //   $('#myModal').modal('toogle');
-	    	    // $('#myModal').modal('show'); 
-                            }  
-                    });
-}
 /*
 form表单数据转换成键值对
 
@@ -151,31 +129,87 @@ function getFormJson(form) {
 提交胡话
 
 */
-function ajaxsubmittxt(){
-	
-	$('.collapse').collapse('hide')
-	
-		   // $.ajax({
-		     //url: "www.baidu.com",
-		    // dataType: 'json',
-		   //  data:getFormJson($("#isdoc")),
-		    // success: function (strValue) {
-		      //if (3>2) {//注意是True,不是true
-		    	     $("#myModalLabel").text("插进去了！");
-		    	     $("#msg").append("<small>这是真的。你bb成功了！</small>");
-		    	  //   $('#myModal').modal('toogle');
-		    	     $('#myModal').modal('show');
-		     // }
-		    //  else {
-		    //	     $("#myModalLabel").text("插得不够深！失败了。");
-		    //	     $("#msg").append("<small>你他娘别瞎搞！发布失败！</small>");
-		    //	     $('#myModal').modal('toogle');
-		    	    // $('#myModal').modal('show');
-		    	     
+$(document).ready(function() {
+    $('#isdoc').bootstrapValidator({
+        message: 'This value is not valid',
+        container: '#errors',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	position: {
+                message: '标题不合法',
+                validators: {
+                    notEmpty: {
+                        message: '没标题你发个毛'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 120,
+                        message: "牛逼的标题不合法"
+                    },
 
-		  //    }
-		    // }
-		   // })
+                   // different: {
+                     //   field: 'password',
+                     //   message: '能不能有点新意 牛逼的标题和内容不要一样'
+                   // }
+                }
+            },
+            setDescription: {
+                message: '内容不合法',
+                validators: {
+                    notEmpty: {
+                        message: '写点内容吧'
+                    },
+                    stringLength: {
+                        min: 5,
+                        max: 3000,
+                        message: "臭不要脸的内容不合法"
+                    },
+
+                   // different: {
+                     //   field: 'password',
+                     //   message: '能不能有点新意 牛逼的标题和内容不要一样'
+                   // }
+                }
+            },
+            
+        }
+    }).on('success.form.bv', function(e) {
+        // Prevent form submission
+        e.preventDefault();
+
+        // Get the form instance
+        var $form = $(e.target);
+
+        // Get the BootstrapValidator instance
+        var bv = $form.data('bootstrapValidator');
+    	$('.collapse').collapse('hide')
+    	
+	    $.ajax({
+	     type: "POST",
+	     url: "xcx_isdoc/create",
+	     dataType: 'json',
+	     data:$form.serialize(),
+	     success: function (msg) {
+	      if (msg.msg=='ok') {
+	    	     $("#myModalLabel").text("插进去了！");
+	    	     $("#msg").append("<small>这是真的。你bb成功了！</small>");
+	    	     //$('#myModal').modal('toogle');
+	    	     $('#myModal').modal('show');
+	    	  //console.log(msg)
+	      }
+	      else {
+	    	     $("#myModalLabel").text("插得不够深！失败了。");
+	    	     $("#msg").append("<small>你他娘别瞎搞！发布失败了！</small>");
+	    	     //$('#myModal').modal('toogle');
+	    	     $('#myModal').modal('show');
 
 
-}
+	      }
+	     }
+	    });
+    });
+});
