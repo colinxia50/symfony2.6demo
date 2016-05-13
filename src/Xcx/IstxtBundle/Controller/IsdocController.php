@@ -47,7 +47,6 @@ class IsdocController extends Controller
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest()) {
             //$request_cont = $request->getContent();
-            // get raw json data
             $category_id =  $request->request->get('category_id');
             $position =  $request->request->get('position');
             $description =  $request->request->get('description');
