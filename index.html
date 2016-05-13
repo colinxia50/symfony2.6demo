@@ -1,0 +1,82 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <title>世界上最无聊的游戏-专治无聊</title>
+</head>
+<style>
+body{TEXT-ALIGN: center;}
+#center{ MARGIN-RIGHT: auto;
+MARGIN-LEFT: auto;
+background:#D4A6A6;
+vertical-align:middle;
+line-height:200px;
+}
+table td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+</style>
+<script language =javascript > 
+function stop()
+{
+alert('不准耍赖！');
+return false;
+}
+function CtrlKeyDown(){
+if (event.ctrlKey) {document.onkeydown=stop;}}
+document.onkeydown=CtrlKeyDown;
+document.oncontextmenu=stop;
+
+
+
+var getTable = function(Tr){
+var randrra = new Array();
+var flag = 1;
+    var s = '<center><table style="border:1 solid green;text-align:center;">';
+    for(var i=0; i<Tr; i++) {
+        s += '<tr>';
+        for(var j=0; j<Tr; j++) {
+
+		while (flag != -1){
+				var num = parseInt(Math.random()*1000,10)+1;
+				var flag = randrra.indexOf(num);
+				//console.log(flag);
+				if(flag == -1){
+					randrra.push(num);
+				}
+				  }
+			var flag = 1;
+            s += '<td onclick="changetext(this.innerHTML)">' + num + '</td>';
+        }
+        s += '</tr>';
+    }
+	window.search = randrra[Math.floor((Math.random()*randrra.length))];  
+    s += '</table></center>';
+	s += '<h1>找出数字' + search + '</h1>';
+    return s;
+}
+window.onload = function() {
+  var div = document.getElementById("center");
+  div.innerHTML=getTable(4);
+}
+
+	window.i = 4;
+function changetext(val){
+	if(val==search){
+	alert('找对了，继续找吧，看你有多无聊！');
+	i +=2;
+	var div = document.getElementById("center");
+	div.innerHTML=getTable(i);
+	}else{
+	alert('你瞎啊！！');
+	}
+}
+</script>
+<body>
+	<div id='center'>
+
+	</div>
+	
+	</body>
