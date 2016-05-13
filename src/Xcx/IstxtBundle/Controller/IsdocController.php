@@ -52,13 +52,14 @@ class IsdocController extends Controller
             $position =  $request->request->get('position');
             $description =  $request->request->get('description');
             $product = new Isdoc();
-            $product->setCategoryId($category_id);
-            $product->setCategory();
+            $em = $this->getDoctrine()->getEntityManager();
+            $product->setCategory($em->getRepository('XcxIstxtBundle:Category')->findOneById($category_id));
+            //$product->setCategory();
             $product->setPosition($position);
             $product->setDescription($description);
             $product->setIsPublic('1');
             
-            $em = $this->getDoctrine()->getEntityManager();
+           
             $em->persist($product);
             $em->flush();
 
