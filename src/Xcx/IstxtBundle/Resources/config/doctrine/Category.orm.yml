@@ -1,0 +1,19 @@
+Xcx\IstxtBundle\Entity\Category:
+    type: entity
+    repositoryClass: Xcx\IstxtBundle\Repository\CategoryRepository
+    
+    table: category
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 255
+            unique: true
+    oneToMany:
+        isdoc:
+            targetEntity: Isdoc
+            mappedBy: category
+    

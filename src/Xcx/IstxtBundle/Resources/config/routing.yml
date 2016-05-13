@@ -1,0 +1,13 @@
+xcx_istxt_xcx_isdoc:
+    resource: "@XcxIstxtBundle/Resources/config/routing/isdoc.yml"
+    prefix:   /xcx_isdoc
+
+xcx_istxt_homepage:
+    path:     /
+    defaults: { _controller: XcxIstxtBundle:Isdoc:index }
+
+login:
+    pattern:   /login
+    defaults:  { _controller: XcxIstxtBundle:Default:login }
+login_check:
+    pattern:   /login_check

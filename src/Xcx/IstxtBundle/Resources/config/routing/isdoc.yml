@@ -1,0 +1,29 @@
+xcx_isdoc_show:
+    path:     /{id}/show
+    defaults: { _controller: "XcxIstxtBundle:Isdoc:show" }
+
+xcx_isdoc_new:
+    path:     /new
+    defaults: { _controller: "XcxIstxtBundle:Isdoc:new" }
+    
+xcx_isdoc_ajaxget:
+    path:     /ajaxget
+    defaults: { _controller: "XcxIstxtBundle:Isdoc:ajaxget" }
+
+xcx_isdoc_create:
+    path:     /create
+    defaults: { _controller: "XcxIstxtBundle:Isdoc:create" }
+
+xcx_isdoc_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "XcxIstxtBundle:Isdoc:edit" }
+
+xcx_isdoc_update:
+    path:     /{id}/update
+    defaults: { _controller: "XcxIstxtBundle:Isdoc:update" }
+    methods:  [POST, PUT]
+
+xcx_isdoc_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "XcxIstxtBundle:Isdoc:delete" }
+    methods:  [POST, DELETE]

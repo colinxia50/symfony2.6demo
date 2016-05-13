@@ -1,0 +1,23 @@
+services:
+#    xcx_istxt.example:
+#        class: Xcx\IstxtBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+services:
+    xcx.istxt.admin.category:
+        class: Xcx\IstxtBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: istxt, label: Categories }
+        arguments:
+            - ~
+            - Xcx\IstxtBundle\Entity\Category
+            - 'XcxIstxtBundle:CategoryAdmin'
+ 
+    xcx.istxt.admin.isdoc:
+        class: Xcx\IstxtBundle\Admin\IsdocAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: istxt, label: Isdoc }
+        arguments:
+            - ~
+            - Xcx\IstxtBundle\Entity\Isdoc
+            - 'XcxIstxtBundle:IsdocAdmin'

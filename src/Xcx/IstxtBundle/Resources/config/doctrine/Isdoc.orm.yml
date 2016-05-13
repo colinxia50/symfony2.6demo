@@ -1,0 +1,52 @@
+Xcx\IstxtBundle\Entity\Isdoc:
+    type: entity
+    repositoryClass: Xcx\IstxtBundle\Repository\IsdocRepository
+    table: isdoc
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        type:
+            type: string
+            length: 255
+            nullable: true
+        category_id:
+            type: integer
+
+        company:
+            type: string
+            length: 255
+        position:
+            type: string
+            length: 255
+        description:
+            type: text
+        is_public:
+            type: boolean
+            nullable: true
+        is_activated:
+            type: boolean
+            nullable: true
+        email:
+            type: string
+            length: 255
+        expires_at:
+            type: datetime
+        created_at:
+            type: datetime
+        updated_at:
+            type: datetime
+            nullable: true
+    manyToOne:
+        category:
+            targetEntity: Category
+            inversedBy: isdocs
+            joinColumn:
+                name: category_id
+                referencedColumnName: id
+
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAtValue, setExpiresAtValue ]
+        preUpdate: [ setUpdatedAtValue ]
+        

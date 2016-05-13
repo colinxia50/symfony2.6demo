@@ -1,0 +1,34 @@
+
+*{padding: 0;margin:0;}
+#main{
+	        position: relative;
+			  left: 56%;
+			  transform: translate(-50%, -50%);
+	    }
+.pin{
+	        padding: 15px 0 0 15px;
+	        float:left;
+	    }
+.box{	    
+	    border-radius: 5px;
+		}
+.boxx{
+		    width:370px;
+	        height:auto;
+	        padding: 10px;
+	        border:1px solid #ccc;
+	        box-shadow: 0 0 6px #ccc;
+	        border-radius: 5px;
+	    	border-color: #6CA1A2;
+    		background: #C8B1B1;
+	    }
+.boxx img{
+	        width:350px;
+	        height:auto;
+	    }
+	    
+.boxs{
+	        width:370px;
+	        height:auto;
+	
+	    }
